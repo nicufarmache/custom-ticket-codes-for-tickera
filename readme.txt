@@ -1,5 +1,5 @@
 === Custom Ticket Codes For Tickera ===
-Contributors: (this should be a list of wordpress.org userid's)
+Contributors: Nicu Farmache
 Donate link: https://github.com/nicufarmache
 Tags: tickets
 License: GPLv2 or later
