@@ -1,0 +1,13 @@
+{
+  "name": "custom-ticket-codes-for-tickera",
+  "version": "0.1.0",
+  "main": "Gruntfile.js",
+  "author": "Nicu Farmache",
+  "scripts": {
+    "readme": "grunt readme"
+  },
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "grunt-wp-readme-to-markdown": "^2.1.0"
+  }
+}
