@@ -1,7 +1,7 @@
 <?php
 /**
 * Plugin Name: Custom Ticket Codes For Tickera
-* Plugin URI:  https://github.com/nicufarmache
+* Plugin URI:  https://github.com/nicufarmache/custom-ticket-codes-for-tickera
 * Description: More options to customize Tickera ticket codes 
 * Version:     1.1
 * License:     GPL v2 or later
