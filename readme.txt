@@ -20,7 +20,7 @@ More options to customize Tickera ticket codes
 
 == Changelog ==
 
-= 1.0 =
+= 1.1 =
 * First version
 
 

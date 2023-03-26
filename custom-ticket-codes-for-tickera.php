@@ -3,7 +3,7 @@
 * Plugin Name: Custom Ticket Codes For Tickera
 * Plugin URI:  https://github.com/nicufarmache
 * Description: More options to customize Tickera ticket codes 
-* Version:     1.0
+* Version:     1.1
 * License:     GPL v2 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 * Author:      Nicu Farmache
@@ -17,64 +17,33 @@
 // tc_ticket_code
 // tc_rand_api_key_length
 
+include 'ctcft-vars.php';
+include 'ctcft-filter-function.php';
+include 'ctcft-filter-api-key-lenght.php';
+include 'ctcft-settings.php';
+
 register_activation_hook(__FILE__, 'ctcft_activate');
 register_deactivation_hook(__FILE__, 'ctcft_deactivate');
 register_uninstall_hook(__FILE__, 'ctcft_uninstall');
 
 function ctcft_activate() { 
+  list(
+    'default_template_value' => $default_template_value,
+    'default_key_length_value' => $default_key_length_value
+  ) = ctcft_get_vars();
+  add_option('ctcft_code_template', $default_template_value, '', false);
+  add_option('ctcft_api_key_length', $default_key_length_value, '', false);
 }
 
 function ctcft_deactivate() {
+  delete_option('ctcft_code_template');
+  delete_option('ctcft_api_key_length');
 }
 
 function ctcft_uninstall() {
+  delete_option('ctcft_code_template');
+  delete_option('ctcft_api_key_length');
 }
-
-
-
-function ctcft_options_page_html() {
-  ?>
-  <div class="wrap">
-    <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-    <form action="options.php" method="post">
-      <?php
-      // output security fields for the registered setting "wporg_options"
-      settings_fields( 'wporg_options' );
-      // output setting sections and their fields
-      // (sections are registered for "wporg", each field is registered to a specific section)
-      do_settings_sections( 'wporg' );
-      // output save settings button
-      submit_button( __( 'Save Settings', 'textdomain' ) );
-      ?>
-    </form>
-  </div>
-  <?php
-}
-
-// Menu entry
-
-add_action( 'admin_menu', 'wporg_options_page' );
-function wporg_options_page() {
-    add_menu_page(
-        'Ticket Codes',
-        'Custom Ticket Codes WPOrg Options',
-        'manage_options',
-        'ctcft',
-        'ctcft_options_page_html',
-        'dashicons-tickets-altg',
-        20
-    );
-}
-
 
 add_filter( 'tc_ticket_code', 'ctcft_modify_ticket_code' );
-function ctcft_modify_ticket_code($code) {
-    return $code . '-' . rand(10000, 99999);
-}
-
-// add_filter( 'tc_rand_api_key_length', 'ctcft_modify_api_key_length' );
-function ctcft_modify_api_key_length($code) {
-  return 12;
-}
-
-
+add_filter( 'tc_rand_api_key_length', 'ctcft_modify_api_key_length' );
