@@ -47,3 +47,18 @@ function ctcft_uninstall() {
 
 add_filter( 'tc_ticket_code', 'ctcft_modify_ticket_code' );
 add_filter( 'tc_rand_api_key_length', 'ctcft_modify_api_key_length' );
+
+add_filter( 'plugin_action_links_custom-ticket-codes-for-tickera/custom-ticket-codes-for-tickera.php', 'ctcft_settings_link' );
+function ctcft_settings_link( $links ) {
+	$url = esc_url( add_query_arg(
+		'page',
+		'ctcft',
+		get_admin_url() . 'admin.php'
+	) );
+	$settings_link = "<a href='$url'>" . __( 'Settings' ) . '</a>';
+	array_push(
+		$links,
+		$settings_link
+	);
+	return $links;
+}
