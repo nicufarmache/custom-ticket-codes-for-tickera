@@ -4,6 +4,7 @@
   "main": "Gruntfile.js",
   "author": "Nicu Farmache",
   "scripts": {
+    "build": "./createzip.sh",
     "readme": "grunt readme"
   },
   "devDependencies": {
